@@ -7,7 +7,7 @@
 		<version>3.2.3.8</version>
 	</parent>
 
-	<groupId>Lippia-Web-Example-Project</groupId>
+	<groupId>Lippia-Web-Example-Project-Cristian</groupId>
 	<artifactId>LippiaWebExampleProject</artifactId>
 	<version>1.0.0</version>
 	<name>crowdar_automation_web</name>
@@ -17,7 +17,7 @@
 	<properties>
 		<maven.build.timestamp.format>yyyyMMdd_HHmm</maven.build.timestamp.format>
 
-		<runner>testngSecuencial.xml</runner>
+        <runner>testngSecuencial.xml</runner>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<!-- defult configuration chrome local -->
@@ -34,7 +34,7 @@
 		<crowdar.cucumber.option>src/test/resources/web/features ${cucumber.hooks} ${cucumber.stepsDefinitions} --tags 'not @Ignore' ${cucumber.tags} ${cucumber.reporters}</crowdar.cucumber.option>
 
 		<!-- client project custom properties -->
-		<web-app.url>http://www.google.com.ar</web-app.url>
+		<web-app.url> http://automationpractice.com/index.php</web-app.url>
 
 	</properties>
 	<profiles>
@@ -93,6 +93,19 @@
 				<crowdar.driverHub>http://localhost:4444/wd/hub</crowdar.driverHub>
 			</properties>
 		</profile>
+		<profile>
+			<id>secuencial</id>
+			<properties>
+				<runner>testngSecuencial.xml</runner>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>parallel</id>
+			<properties>
+				<runner>testngParallel.xml</runner>
+			</properties>
+		</profile>
 
 	</profiles>
 	<dependencies>
@@ -122,6 +135,11 @@
 						<suiteXmlFile>${runner}</suiteXmlFile>
 					</suiteXmlFiles>
 					<testFailureIgnore>false</testFailureIgnore>
+					<systemPropertyVariables>
+						<LIPPIA_RS_API_HOST>https://api.demo.lippia.io</LIPPIA_RS_API_HOST>
+						<LIPPIA_RS_PROJECT_NAME>Web Sample</LIPPIA_RS_PROJECT_NAME>
+						<LIPPIA_RS_REPORT_NAME>Local Headless - build</LIPPIA_RS_REPORT_NAME>
+					</systemPropertyVariables>
 				</configuration>
 			</plugin>
 		</plugins>
